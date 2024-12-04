@@ -1,5 +1,25 @@
+<script setup>
+import { AppFooter, AppHeader, AppModal } from "@/components";
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+// const isAdmin = computed(() => store.getters.isAdmin);
+// const isWaiter = computed(() => store.getters.isWaiter);
+// const isCook = computed(() => store.getters.isCook);
+const openedModal = computed(() => store.getters.openedModal);
+</script>
+
 <template>
-  <router-view />
+  <div class="wrapper">
+    <AppModal v-if="openedModal" :modal="openedModal" />
+    <AppHeader />
+    <main>
+      <RouterView />
+    </main>
+    <AppFooter />
+  </div>
 </template>
 
 <style lang="scss"></style>

@@ -1,5 +1,7 @@
+<script setup></script>
+
 <template>
-  <div>dfgporepoepoeok</div>
+  <section class="home">nothing</section>
 </template>
 
-<script setup></script>
+<style scoped lang="scss"></style>
