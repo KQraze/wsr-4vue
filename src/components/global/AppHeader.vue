@@ -8,7 +8,7 @@ const isAdmin = computed(() => store.getters.isAdmin);
 const token = computed(() => store.getters.token);
 
 const openModal = () => store.dispatch("openModal", 0);
-const logout = () => store.dispatch("")
+const logout = () => store.dispatch("");
 </script>
 
 <template>

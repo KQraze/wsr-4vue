@@ -31,6 +31,8 @@ export default createStore({
 
     logoutUser: async ({ dispatch }) => {
       await $api.get("logout");
+      await dispatch("clearToken");
+      await dispatch("setRole", null);
     },
 
     setToken: ({ commit }, value) => {
