@@ -25,7 +25,11 @@ export const fetchInstance = async (url, options) => {
 export const $api = {
   get: (url, options) => fetchInstance(url, options),
   post: (url, body, options) =>
-    fetchInstance(url, { method: "POST", body, ...options }),
+    fetchInstance(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      ...options,
+    }),
   delete: (url, options) =>
     fetchInstance(url, { method: "DELETE", ...options }),
   patch: (url, body, options) =>

@@ -25,8 +25,12 @@ export default createStore({
     loginUser: async ({ dispatch }, { login, password, role }) => {
       const { data } = await $api.post("login", { login, password });
 
-      await dispatch("setToken", data.data.user_token ?? null);
+      await dispatch("setToken", data.data?.user_token ?? null);
       await dispatch("setRole", role ?? null);
+    },
+
+    logoutUser: async ({ dispatch }) => {
+      await $api.get("logout");
     },
 
     setToken: ({ commit }, value) => {
