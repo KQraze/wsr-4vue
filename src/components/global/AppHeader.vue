@@ -1,14 +1,19 @@
 <script setup>
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 
 const store = useStore();
+const router = useRouter();
 
 const isAdmin = computed(() => store.getters.isAdmin);
 const token = computed(() => store.getters.token);
 
 const openModal = () => store.dispatch("openModal", 0);
-const logout = () => store.dispatch("logoutUser");
+const logout = () => {
+  store.dispatch("logoutUser");
+  router.push({ name: "home" });
+};
 </script>
 
 <template>

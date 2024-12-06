@@ -38,7 +38,13 @@ const login = async () => {
       >
         Отправить
       </button>
-      <button class="cancel_button" type="button">Отмена</button>
+      <button
+        class="cancel_button"
+        type="button"
+        @click="store.dispatch('openModal', null)"
+      >
+        Отмена
+      </button>
     </div>
   </form>
 </template>
