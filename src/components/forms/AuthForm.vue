@@ -10,8 +10,8 @@ const model = reactive({
 });
 
 const login = async () => {
-  await store.dispatch("loginUser", { ...model, role: "admin" });
-  await store.dispatch("openModal", null);
+  const isSuccessful = await store.dispatch("loginUser", { ...model });
+  if (isSuccessful) await store.dispatch("openModal", null);
 };
 </script>
 

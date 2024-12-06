@@ -1,5 +1,8 @@
 <script setup>
 import { EmployeeCard } from "@/components/employee";
+import { useStore } from "vuex";
+
+const store = useStore();
 </script>
 
 <template>
@@ -8,7 +11,7 @@ import { EmployeeCard } from "@/components/employee";
       <span>Имя</span>
       <span>Статус</span>
       <span>Должность</span>
-      <button>+</button>
+      <button @click="store.dispatch('openModal', 3)">+</button>
     </article>
     <EmployeeCard
       v-for="i in 5"

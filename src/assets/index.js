@@ -1,8 +1,8 @@
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
-const headers = reactive({
+export const headers = reactive({
   "Content-Type": "application/json",
-  Authorization: "Bearer",
+  Authorization: ref("Bearer"),
 });
 
 export const fetchInstance = async (url, options) => {
