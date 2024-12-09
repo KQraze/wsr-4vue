@@ -1,8 +1,13 @@
 <script setup>
 import { EmployeeCard } from "@/components/employee";
-import { useStore } from "vuex";
+import { useAccountStore, useEmployeeStore, useModalStore } from "@/store";
+import { onMounted } from "vue";
 
-const store = useStore();
+const { isAdmin } = useAccountStore();
+const { employers, initEmployers } = useEmployeeStore();
+const { openModal } = useModalStore();
+
+onMounted(initEmployers);
 </script>
 
 <template>
@@ -11,14 +16,13 @@ const store = useStore();
       <span>Имя</span>
       <span>Статус</span>
       <span>Должность</span>
-      <button @click="store.dispatch('openModal', 3)">+</button>
+      <button v-if="isAdmin" @click="openModal(3)">+</button>
     </article>
     <EmployeeCard
-      v-for="i in 5"
-      :key="i"
-      name="Ariane"
-      status="Работает"
-      job-title="Официант"
+      v-for="employee in employers"
+      :key="employee"
+      v-bind="employee"
+      @set-modal-data="openModal(4, employee)"
     />
   </section>
 </template>

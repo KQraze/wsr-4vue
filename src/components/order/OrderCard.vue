@@ -3,7 +3,8 @@ import { defineProps } from "vue";
 
 defineProps({
   id: Number,
-  name: String,
+  table: String,
+  shift_workers: String,
   status: String,
   price: Number,
 });
@@ -11,8 +12,8 @@ defineProps({
 
 <template>
   <article>
-    <h2>Столик №{{ id }}</h2>
-    <p>Официант: {{ name }}</p>
+    <h2>{{ table }}</h2>
+    <p>Официант: {{ shift_workers }}</p>
     <p class="fired">Статус: {{ status }}</p>
     <p>Цена: {{ price }}</p>
     <button class="approve_button">Управление</button>

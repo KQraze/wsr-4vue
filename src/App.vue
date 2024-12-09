@@ -1,16 +1,11 @@
 <script setup>
 import { AppFooter, AppHeader, AppModal } from "@/components";
-import { computed, onMounted } from "vue";
-import { useStore } from "vuex";
+import { init, useModalStore } from "@/store";
+import { onMounted } from "vue";
 
-const store = useStore();
+const { openedModal } = useModalStore();
 
-// const isAdmin = computed(() => store.getters.isAdmin);
-// const isWaiter = computed(() => store.getters.isWaiter);
-// const isCook = computed(() => store.getters.isCook);
-const openedModal = computed(() => store.getters.openedModal);
-
-onMounted(() => store.dispatch("init"));
+onMounted(() => init());
 </script>
 
 <template>

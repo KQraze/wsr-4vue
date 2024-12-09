@@ -1,18 +1,20 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 
 defineProps({
   name: String,
   status: String,
-  jobTitle: String,
+  group: String,
 });
+
+defineEmits(["set-modal-data"]);
 </script>
 
 <template>
   <article>
     <span>{{ name }}</span>
     <span>{{ status }}</span>
-    <span>{{ jobTitle }}</span>
+    <span>{{ group }}</span>
     <button>Подробнее</button>
   </article>
 </template>

@@ -1,22 +1,18 @@
 <script setup>
-import { useStore } from "vuex";
 import { reactive } from "vue";
+import { useAccountStore, useModalStore } from "@/store";
 
-const store = useStore();
+const { login } = useAccountStore();
+const { openModal } = useModalStore();
 
 const model = reactive({
   login: "",
   password: "",
 });
-
-const login = async () => {
-  const isSuccessful = await store.dispatch("loginUser", { ...model });
-  if (isSuccessful) await store.dispatch("openModal", null);
-};
 </script>
 
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="login(model)">
     <h2>Авторизация</h2>
     <div>
       <label for="login_enter">Логин</label>
@@ -38,11 +34,7 @@ const login = async () => {
       >
         Отправить
       </button>
-      <button
-        class="cancel_button"
-        type="button"
-        @click="store.dispatch('openModal', null)"
-      >
+      <button class="cancel_button" type="button" @click="openModal(null)">
         Отмена
       </button>
     </div>

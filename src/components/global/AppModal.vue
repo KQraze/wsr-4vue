@@ -1,6 +1,12 @@
 <script setup>
 import { defineProps } from "vue";
-import { EmployeeForm, AuthForm, OrderForm, ShiftForm } from "@/components";
+import {
+  EmployeeForm,
+  AuthForm,
+  OrderForm,
+  ShiftForm,
+  EmployeeModal,
+} from "@/components";
 
 defineProps({
   modal: String,
@@ -13,6 +19,7 @@ defineProps({
     <AuthForm v-else-if="modal === 'auth'" />
     <OrderForm v-else-if="modal === 'order'" />
     <ShiftForm v-else-if="modal === 'shift'" />
+    <EmployeeModal v-else-if="modal === 'employee-show'" />
   </article>
 </template>
 

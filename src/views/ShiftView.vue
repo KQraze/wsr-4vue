@@ -1,18 +1,17 @@
 <script setup>
 import { ShiftCard } from "@/components/shift";
+import { useShiftStore } from "@/store";
+import { onMounted } from "vue";
+
+const { shifts, initShifts } = useShiftStore();
+
+onMounted(initShifts);
 </script>
 
 <template>
   <section class="shift">
     <button class="approve_button">Добавить смену</button>
-    <ShiftCard
-      v-for="i in 5"
-      :key="i"
-      :shift-id="i"
-      shift-start-date="2021-09-19 08:00"
-      shift-end-date="2021-09-19 18:00"
-      status="Открыта"
-    />
+    <ShiftCard v-for="shift in shifts" :key="shift" v-bind="shift" />
   </section>
 </template>
 

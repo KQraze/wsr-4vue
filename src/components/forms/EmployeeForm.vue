@@ -1,8 +1,9 @@
 <script setup>
 import { reactive } from "vue";
-import { useStore } from "vuex";
+import { useEmployeeStore, useModalStore } from "@/store";
 
-const store = useStore();
+const { addEmployee } = useEmployeeStore();
+const { openModal } = useModalStore();
 
 const model = reactive({
   name: "",
@@ -10,16 +11,10 @@ const model = reactive({
   password: "",
   role_id: "nothing",
 });
-
-const sendForm = async () => {
-  const isSuccessful = await store.dispatch("addEmployee", model);
-
-  if (isSuccessful) await store.dispatch("openModal", null);
-};
 </script>
 
 <template>
-  <form enctype="multipart/form-data" @submit.prevent="sendForm">
+  <form enctype="multipart/form-data" @submit.prevent="addEmployee(model)">
     <h2>Добавление нового сотрудника</h2>
     <div>
       <label for="name">Имя</label>
@@ -53,11 +48,7 @@ const sendForm = async () => {
     </div>
     <div>
       <button class="approve_button" type="submit">Отправить</button>
-      <button
-        class="cancel_button"
-        @click="store.dispatch('openModal', null)"
-        type="button"
-      >
+      <button class="cancel_button" @click="openModal(null)" type="button">
         Отмена
       </button>
     </div>

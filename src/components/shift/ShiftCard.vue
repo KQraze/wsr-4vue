@@ -1,19 +1,20 @@
 <script setup>
-// eslint-disable-next-line no-undef
+import { defineProps } from "vue";
+
 defineProps({
-  shiftId: Number,
-  shiftStartDate: [String, Date],
-  shiftEndDate: [String, Date],
-  status: String,
+  id: Number,
+  start: [String, Date],
+  end: [String, Date],
+  active: String,
 });
 </script>
 
 <template>
   <article>
-    <h2>Смена №{{ shiftId }}</h2>
-    <p>Начало смены в {{ shiftStartDate }}</p>
-    <p>Конец смены в {{ shiftEndDate }}</p>
-    <p class="fired">Статус: {{ status }}</p>
+    <h2>Смена №{{ id }}</h2>
+    <p>Начало смены в {{ start }}</p>
+    <p>Конец смены в {{ end }}</p>
+    <p class="fired">Статус: {{ active ? "Открыта" : "Закрыта" }}</p>
     <button class="approve_button">Управление</button>
   </article>
 </template>

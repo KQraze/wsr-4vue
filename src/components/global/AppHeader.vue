@@ -1,17 +1,14 @@
 <script setup>
-import { useStore } from "vuex";
-import { computed } from "vue";
 import { useRouter } from "vue-router";
+import { useAccountStore, useModalStore } from "@/store";
 
-const store = useStore();
 const router = useRouter();
 
-const isAdmin = computed(() => store.getters.isAdmin);
-const token = computed(() => store.getters.token);
+const { isAdmin, token, logout: logoutFn } = useAccountStore();
+const { openModal } = useModalStore();
 
-const openModal = () => store.dispatch("openModal", 0);
 const logout = () => {
-  store.dispatch("logoutUser");
+  logoutFn();
   router.push({ name: "home" });
 };
 </script>
@@ -32,7 +29,7 @@ const logout = () => {
         <router-link :to="{ name: 'orders' }">Заказы</router-link>
         <a href="#" class="cancel_button" @click="logout">Выход</a>
       </template>
-      <a v-if="!token" href="#" class="approve_button" @click="openModal">
+      <a v-if="!token" href="#" class="approve_button" @click="openModal(0)">
         Вход
       </a>
     </nav>
